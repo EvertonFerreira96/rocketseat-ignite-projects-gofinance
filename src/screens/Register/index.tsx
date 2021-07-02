@@ -39,7 +39,7 @@ const schema = Yup.object().shape({
 
 const Register: React.FC = () => {
     const { user } = useAuth(); 
-    const { navigate } = useNavigation();
+    // const { navigate } = useNavigation();
     const { 
         control,
         handleSubmit,
@@ -55,7 +55,6 @@ const Register: React.FC = () => {
     const [transactionType, setTransactionType] = useState('');
     const [categorySelectModel, setCategorySelectModel] = useState(false);
 
-    const collectionKey = `@gofinances:transactions_user:${user.id}`;
 
     function handleTransactionType(type: 'income' | 'outcome') {
         setTransactionType(type);
@@ -68,6 +67,7 @@ const Register: React.FC = () => {
     }
     async function handleRegister({amount, name}: FormData) {
         
+    const collectionKey = `@gofinances:transactions_user:${user.id}`;
         if(!transactionType)
             return Alert.alert('Selecione um tipo de Transação')
 
@@ -93,7 +93,7 @@ const Register: React.FC = () => {
             Alert.alert("Não foi possível salvar");
         }
         handleClearFields(); 
-        navigate('Listagem')
+      // navigate('Listagem')
     }
 
     function handleClearFields() {
@@ -145,7 +145,7 @@ const Register: React.FC = () => {
                     <Button title="Enviar" onPress={handleSubmit(handleRegister)} />
                 </Form>
 
-                <Modal visible={categorySelectModel} >
+                <Modal testID="modal" visible={categorySelectModel} >
 
                         <CategorySelect
                             category={category}

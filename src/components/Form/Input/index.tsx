@@ -3,11 +3,13 @@ import { TextInputProps } from 'react-native';
 
 import { Container } from './styles';
 
-interface InputProps extends TextInputProps {}
+interface InputProps extends TextInputProps {
+  active ?: boolean;
+}
 
-const Input: React.FC<InputProps> = ({...rest}) => {
+const Input: React.FC<InputProps> = ({ active = false, ...rest}) => {
   return (
-      <Container {...rest}>
+      <Container active={active} {...rest}>
 
       </Container>
   );
